@@ -2,6 +2,7 @@ package layeredarhitecture.repository;
 
 import layeredarhitecture.entity.Employee;
 import layeredarhitecture.entity.Project;
+import layeredarhitecture.exception.UserNotFoundException;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -30,8 +31,12 @@ public class RepositoryImpl implements Repository {
     }
 
     @Override
-    public void deleteEmployee(String id){
-        employeeMap.remove(id);
+    public void deleteEmployee(String id) throws UserNotFoundException {
+        if(employeeMap.containsKey(id)) {
+            employeeMap.remove(id);
+        } else{
+            throw new UserNotFoundException();
+        }
     }
 
     @Override

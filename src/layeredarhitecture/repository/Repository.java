@@ -1,6 +1,7 @@
 package layeredarhitecture.repository;
 
 import layeredarhitecture.entity.Employee;
+import layeredarhitecture.exception.UserNotFoundException;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ public interface Repository {
 
     void updateEmployee(Employee employee);
 
-    void deleteEmployee(String id);
+    void deleteEmployee(String id) throws UserNotFoundException;
 
     Employee getEmployee(String id);
 

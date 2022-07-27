@@ -1,8 +1,8 @@
 package layeredarhitecture;
 
 import layeredarhitecture.entity.Employee;
+import layeredarhitecture.exception.UserNotFoundException;
 import layeredarhitecture.service.Service;
-import layeredarhitecture.service.ServiceImpl;
 
 import java.util.List;
 
@@ -25,8 +25,12 @@ public class UI {
     }
 
     public void deleteEmployee(String id) {
-        service.deleteEmployee(id);
-        System.out.println(id + " | deleted");
+        try {
+            service.deleteEmployee(id);
+            System.out.println(id + " | deleted");
+        } catch (UserNotFoundException exception) {
+            System.out.println("User with id:" + id + " not found");
+        }
     }
 
     public void getEmployee(String id) {
@@ -38,17 +42,19 @@ public class UI {
         List<Employee> employees = service.getAllEmployees();
         System.out.println(employees + " | all employees");
     }
+
     public void getEmployeesBySalary(Integer salary) {
         List<Employee> employeeList = service.getEmployeesBySalary(salary);
         System.out.println(employeeList + " | employees by salary");
 
     }
+
     public void getEmployeesByProjectName(String projectName) {
         List<Employee> employeeList = service.getEmployeesByProjectName(projectName);
         System.out.println(employeeList + " | employees by project name");
     }
 
-    public void assignProjectToEmployee(String employeeId, String projectName){
+    public void assignProjectToEmployee(String employeeId, String projectName) {
         service.assignProjectToEmployee(employeeId, projectName);
         System.out.println(employeeId + " assigned to " + projectName);
     }

@@ -1,6 +1,7 @@
 package layeredarhitecture.service;
 
 import layeredarhitecture.entity.Employee;
+import layeredarhitecture.exception.UserNotFoundException;
 import layeredarhitecture.repository.Repository;
 import layeredarhitecture.repository.RepositoryImpl;
 
@@ -25,7 +26,7 @@ public class ServiceImpl implements Service {
     }
 
     @Override
-    public void deleteEmployee(String id){
+    public void deleteEmployee(String id) throws UserNotFoundException {
         repository.deleteEmployee(id);
     }
 
